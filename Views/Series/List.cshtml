@@ -1,0 +1,33 @@
+﻿@model List<DeckBuilder.Models.Series>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Series List</h2>
+<a href="/Series/Add">Add a new Series</a>
+<table>
+    <thead>
+        <tr>
+            <th class="col-sm-1">Series Name</th>
+            <th class="col-sm-1">Series Code</th>
+            <th class="col-sm-1">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var series in @Model)
+            {
+                <tr>
+                    <td class="col-sm-1"><a href="/Series/Show/@series.SeriesID">@series.SeriesName</a></td>
+                    <td class="col-sm-1">@series.SeriesCode</td>
+                    <td class="col-sm-1">
+                        <form method="POST" action="/Series/Delete/@series.SeriesID">
+                            <input id="submit" type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

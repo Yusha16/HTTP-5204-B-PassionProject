@@ -1,0 +1,13 @@
+﻿@model DeckBuilder.Models.Series
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show Series Detail</h2>
+
+<a href="/Series/List">Back to List</a>
+<a href="/Series/Update/@Model.SeriesID">Update</a>
+
+<p>Name: @Model.SeriesName</p>
+<p>Code: @Model.SeriesCode</p>

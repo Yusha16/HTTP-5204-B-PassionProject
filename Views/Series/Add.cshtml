@@ -1,0 +1,18 @@
+﻿
+@{
+    ViewBag.Title = "Add";
+}
+
+<h2>Add a new Series</h2>
+<form method="POST" action="/Series/Add">
+    <div>
+        <label name="SeriesName">Series Name: </label>
+        <input type="text" name="SeriesName" id="SeriesName" />
+    </div>
+    <div>
+        <label name="SeriesCode">Series Code: </label>
+        <input type="text" name="SeriesCode" id="SeriesCode" />
+    </div>
+    <input type="submit" value="Add Series" />
+</form>
+

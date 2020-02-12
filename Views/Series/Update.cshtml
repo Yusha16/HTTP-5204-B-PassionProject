@@ -1,0 +1,12 @@
+﻿@model DeckBuilder.Models.Series
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update @Model.SeriesName</h2>
+<form method="POST" action="/Series/Update/@Model.SeriesID">
+    <span>Series Name</span><input type="text" name="SeriesName" id="SeriesName" value="@Model.SeriesName" />
+    <span>Series Code</span><input type="text" name="SeriesCode" id="SeriesCode" value="@Model.SeriesCode" />
+    <input type="submit" value="Update Series" />
+</form>

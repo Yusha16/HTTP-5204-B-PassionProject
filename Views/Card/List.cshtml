@@ -1,0 +1,15 @@
+﻿@model List<DeckBuilder.Models.Card>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>List</h2>
+
+@{
+    foreach (var card in Model)
+    {
+        <div>@card.CardName</div>
+    }
+}
+
