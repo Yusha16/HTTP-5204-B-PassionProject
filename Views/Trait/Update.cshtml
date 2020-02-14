@@ -1,0 +1,11 @@
+﻿@model DeckBuilder.Models.Trait
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update @Model.TraitName</h2>
+<form method="POST" action="/Trait/Update/@Model.TraitID">
+    <span>Trait Name</span><input type="text" name="TraitName" id="TraitName" value="@Model.TraitName" />
+    <input type="submit" value="Update Trait" />
+</form>

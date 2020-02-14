@@ -1,0 +1,19 @@
+﻿@model DeckBuilder.Models.ViewModels.ShowCard
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show Trait Detail</h2>
+
+<a href="/Card/List">Back to List</a>
+<a href="/Card/Update/@Model.card.CardID">Update</a>
+<p>Name: @Model.card.CardName</p>
+<p>Colour: @Model.card.CardColour</p>
+<p>Series: <a value="@Model.card.SeriesID">@Model.card.Series.SeriesName</a></p>
+@{
+    foreach (var trait in @Model.traits)
+    {
+        <p>Trait: <a value="@trait.TraitID">@trait.TraitName</a></p>
+    }
+}

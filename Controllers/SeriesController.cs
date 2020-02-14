@@ -42,7 +42,7 @@ namespace DeckBuilder.Controllers
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
             //Query statement to get the specific Species
-            string query = "SELECT * from series where seriesid=@SeriesID";
+            string query = "SELECT * FROM series WHERE seriesid=@SeriesID";
             SqlParameter sqlparam = new SqlParameter("@SeriesID", id);
 
             //Get the Specific Series

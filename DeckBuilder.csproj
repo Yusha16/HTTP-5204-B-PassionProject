@@ -130,6 +130,7 @@
     <Compile Include="Controllers\CardController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SeriesController.cs" />
+    <Compile Include="Controllers\TraitController.cs" />
     <Compile Include="Data\DeckBuilderContext.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -142,11 +143,18 @@
     <Compile Include="Migrations\202002120130170_initial1.designer.cs">
       <DependentUpon>202002120130170_initial1.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002130101236_Traits Update.cs" />
+    <Compile Include="Migrations\202002130101236_Traits Update.designer.cs">
+      <DependentUpon>202002130101236_Traits Update.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Deck.cs" />
     <Compile Include="Models\Series.cs" />
     <Compile Include="Models\Trait.cs" />
+    <Compile Include="Models\ViewModels\AddCard.cs" />
+    <Compile Include="Models\ViewModels\ShowCard.cs" />
+    <Compile Include="Models\ViewModels\UpdateCard.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -191,6 +199,12 @@
     <Content Include="Views\Series\Update.cshtml" />
     <Content Include="Views\Series\Show.cshtml" />
     <Content Include="Views\Trait\List.cshtml" />
+    <Content Include="Views\Trait\Add.cshtml" />
+    <Content Include="Views\Trait\Update.cshtml" />
+    <Content Include="Views\Trait\Show.cshtml" />
+    <Content Include="Views\Card\Add.cshtml" />
+    <Content Include="Views\Card\Show.cshtml" />
+    <Content Include="Views\Card\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -214,6 +228,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002120130170_initial1.resx">
       <DependentUpon>202002120130170_initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002130101236_Traits Update.resx">
+      <DependentUpon>202002130101236_Traits Update.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,12 @@
+﻿@model DeckBuilder.Models.Trait
+
+@{
+    ViewBag.Title = "Show";
+}
+
+<h2>Show Trait Detail</h2>
+
+<a href="/Trait/List">Back to List</a>
+<a href="/Trait/Update/@Model.TraitID">Update</a>
+
+<p>Name: @Model.TraitName</p>

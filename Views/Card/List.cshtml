@@ -4,12 +4,32 @@
     ViewBag.Title = "List";
 }
 
-<h2>List</h2>
-
-@{
-    foreach (var card in Model)
-    {
-        <div>@card.CardName</div>
-    }
-}
-
+<h2>Card List</h2>
+<a href="/Card/Add">Add a new Card</a>
+<table>
+    <thead>
+        <tr>
+            <th class="col-sm-1">Card Name</th>
+            <th class="col-sm-1">Card Colour</th>
+            <th class="col-sm-1">Series Name</th>
+            <th class="col-sm-1">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var card in @Model)
+            {
+                <tr>
+                    <td class="col-sm-1"><a href="/Card/Show/@card.CardID">@card.CardName</a></td>
+                    <td class="col-sm-1">@card.CardColour</td>
+                    <td class="col-sm-1"><a href="/Series/Show/@card.SeriesID">@card.Series.SeriesName</a></td>
+                    <td class="col-sm-1">
+                        <form method="POST" action="/Card/Delete/@card.CardID">
+                            <input id="submit" type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

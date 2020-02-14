@@ -18,6 +18,6 @@ namespace DeckBuilder.Data
 
         public System.Data.Entity.DbSet<DeckBuilder.Models.Series> Series { get; set; }
 
-        public System.Data.Entity.DbSet<DeckBuilder.Models.Trait> Trait { get; set; }
+        public System.Data.Entity.DbSet<DeckBuilder.Models.Trait> Traits { get; set; }
     }
 }

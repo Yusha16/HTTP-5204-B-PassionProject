@@ -1,0 +1,75 @@
+﻿@model DeckBuilder.Models.ViewModels.UpdateCard
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update @Model.card.CardName</h2>
+<form method="POST" action="/Card/Update/@Model.card.CardID">
+    <div>
+        <span>Card Name: </span><input type="text" name="CardName" id="CardName" value="@Model.card.CardName" />
+    </div>
+    <div>
+        <span>Card Colour: </span><input type="text" name="CardColour" id="CardColour" value="@Model.card.CardColour" />
+    </div>
+    <div>
+        <span>Series: </span>
+        <select id="SeriesID" type="text" name="SeriesID">
+            @{
+                //A rendering loop for presenting a list of series
+                //The card should be one of these series
+                foreach (var series in @Model.allSeries)
+                {
+                    if (Model.card.SeriesID == @series.SeriesID)
+                    {
+                        <option value="@series.SeriesID" selected>@series.SeriesName</option>
+                    }
+                    else
+                    {
+                        <option value="@series.SeriesID">@series.SeriesName</option>
+
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <span>Trait: </span>
+        <select id="TraitID1" type="text" name="TraitID1">
+            @{
+                //A rendering loop for presenting a list of traits
+                foreach (var trait in @Model.allTraits)
+                {
+                    if (Model.traits.Count > 0 && Model.traits[0].TraitID == trait.TraitID)
+                    {
+                        <option value="@trait.TraitID" selected>@trait.TraitName</option>
+                    }
+                    else
+                    {
+                        <option value="@trait.TraitID">@trait.TraitName</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <span>Trait: </span>
+        <select id="TraitID2" type="text" name="TraitID2">
+            @{
+                //A rendering loop for presenting a list of traits
+                foreach (var trait in @Model.allTraits)
+                {
+                    if (Model.traits.Count > 1 && Model.traits[1].TraitID == trait.TraitID)
+                    {
+                        <option value="@trait.TraitID" selected>@trait.TraitName</option>
+                    }
+                    else
+                    {
+                        <option value="@trait.TraitID">@trait.TraitName</option>
+                    }
+                }
+            }
+        </select>
+    </div>
+    <input type="submit" value="Update Card" />
+</form>

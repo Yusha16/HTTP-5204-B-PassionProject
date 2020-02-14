@@ -5,7 +5,7 @@
 }
 
 <h2>Trait List</h2>
-<a href="/Series/Add">Add a new Trait</a>
+<a href="/Trait/Add">Add a new Trait</a>
 <table>
     <thead>
         <tr>
@@ -18,9 +18,9 @@
             foreach (var trait in @Model)
             {
                 <tr>
-                    <td class="col-sm-1"><a href="/Series/Show/@trait.TraitID">@trait.TraitName</a></td>
+                    <td class="col-sm-1"><a href="/Trait/Show/@trait.TraitID">@trait.TraitName</a></td>
                     <td class="col-sm-1">
-                        <form method="POST" action="/Series/Delete/@trait.TraitID">
+                        <form method="POST" action="/Trait/Delete/@trait.TraitID">
                             <input id="submit" type="submit" value="Delete" />
                         </form>
                     </td>
