@@ -37,10 +37,11 @@
         <span>Trait: </span>
         <select id="TraitID1" type="text" name="TraitID1">
             @{
+                <option value="-1" selected>None</option>
                 //A rendering loop for presenting a list of traits
                 foreach (var trait in @Model.allTraits)
                 {
-                    if (Model.traits.Count > 0 && Model.traits[0].TraitID == trait.TraitID)
+                    if (Model.card.Trait1 != null && Model.card.TraitID1 == trait.TraitID)
                     {
                         <option value="@trait.TraitID" selected>@trait.TraitName</option>
                     }
@@ -56,10 +57,11 @@
         <span>Trait: </span>
         <select id="TraitID2" type="text" name="TraitID2">
             @{
+                <option value="-1" selected>None</option>
                 //A rendering loop for presenting a list of traits
                 foreach (var trait in @Model.allTraits)
                 {
-                    if (Model.traits.Count > 1 && Model.traits[1].TraitID == trait.TraitID)
+                    if (Model.card.Trait2 != null && Model.card.TraitID2 == trait.TraitID)
                     {
                         <option value="@trait.TraitID" selected>@trait.TraitName</option>
                     }

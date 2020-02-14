@@ -147,6 +147,22 @@
     <Compile Include="Migrations\202002130101236_Traits Update.designer.cs">
       <DependentUpon>202002130101236_Traits Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002141816263_fixing-Card-Relationship.cs" />
+    <Compile Include="Migrations\202002141816263_fixing-Card-Relationship.designer.cs">
+      <DependentUpon>202002141816263_fixing-Card-Relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002141820492_testing-card-relationship.cs" />
+    <Compile Include="Migrations\202002141820492_testing-card-relationship.designer.cs">
+      <DependentUpon>202002141820492_testing-card-relationship.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002141822498_testing-card-relationship-for-traits.cs" />
+    <Compile Include="Migrations\202002141822498_testing-card-relationship-for-traits.designer.cs">
+      <DependentUpon>202002141822498_testing-card-relationship-for-traits.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002141904492_Revert-relationship-of-card-and-trait.cs" />
+    <Compile Include="Migrations\202002141904492_Revert-relationship-of-card-and-trait.designer.cs">
+      <DependentUpon>202002141904492_Revert-relationship-of-card-and-trait.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Deck.cs" />
@@ -231,6 +247,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002130101236_Traits Update.resx">
       <DependentUpon>202002130101236_Traits Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141816263_fixing-Card-Relationship.resx">
+      <DependentUpon>202002141816263_fixing-Card-Relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141820492_testing-card-relationship.resx">
+      <DependentUpon>202002141820492_testing-card-relationship.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141822498_testing-card-relationship-for-traits.resx">
+      <DependentUpon>202002141822498_testing-card-relationship-for-traits.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002141904492_Revert-relationship-of-card-and-trait.resx">
+      <DependentUpon>202002141904492_Revert-relationship-of-card-and-trait.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

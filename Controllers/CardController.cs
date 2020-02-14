@@ -49,6 +49,7 @@ namespace PassionProject.Controllers
             //Get the Specific Card
             Card selectedCard = db.Cards.SqlQuery(query, sqlparam).FirstOrDefault();
 
+            /*
             //Get the all the trait that the card has
             string aside_query = "SELECT * FROM Traits INNER JOIN TraitCards ON Traits.TraitID = TraitCards.Trait_TraitID WHERE TraitCards.Card_CardID=@id";
             var fk_parameter = new SqlParameter("@id", id);
@@ -66,6 +67,16 @@ namespace PassionProject.Controllers
 
             //Show the result
             return View(viewmodel);
+            */
+
+            if (selectedCard == null)
+            {
+                return HttpNotFound();
+            }
+
+            //Show the result
+            return View(selectedCard);
+
         }
 
         //When user lands on the Add page (not submitting form)
@@ -89,16 +100,19 @@ namespace PassionProject.Controllers
             //Debug Purpose to see if we are getting the data
             Debug.WriteLine("I'm pulling data of " + CardName + ", " + CardColour + ", " + SeriesID + ", " + TraitID1  + ", and " + TraitID2);
 
-            //The query to add a new Trait
-            string query = "INSERT INTO cards (CardName, CardColour, SeriesID) VALUES (@CardName, @CardColour, @SeriesID)";
-            SqlParameter[] sqlparams = new SqlParameter[3];
+            //The query to add a new Card
+            string query = "INSERT INTO cards (CardName, CardColour, SeriesID, TraitID1, TraitID2) VALUES (@CardName, @CardColour, @SeriesID, @TraitID1, @TraitID2)";
+            SqlParameter[] sqlparams = new SqlParameter[5];
             sqlparams[0] = new SqlParameter("@CardName", CardName);
             sqlparams[1] = new SqlParameter("@CardColour", CardColour);
             sqlparams[2] = new SqlParameter("@SeriesID", SeriesID);
+            sqlparams[3] = new SqlParameter("@TraitID1", TraitID1);
+            sqlparams[4] = new SqlParameter("@TraitID2", TraitID2);
 
             //Run the sql command
             db.Database.ExecuteSqlCommand(query, sqlparams);
 
+            /*
             //Get the id
             List<Card> cards = db.Cards.SqlQuery("SELECT * FROM Cards").ToList();
             int id = cards[cards.Count - 1].CardID;
@@ -120,6 +134,7 @@ namespace PassionProject.Controllers
                 sqlparams[1] = new SqlParameter("@TraitID", TraitID2);
                 db.Database.ExecuteSqlCommand(query, sqlparams);
             }
+            */
 
             //Go back to the list of Trait to see the added Trait
             return RedirectToAction("List");
@@ -145,12 +160,14 @@ namespace PassionProject.Controllers
             List<Trait> allTraits = db.Traits.SqlQuery("SELECT * FROM Traits").ToList();
             viewModel.allSeries = allSeries;
             viewModel.allTraits = allTraits;
-
+            
+            /*
             //Get the all the trait that the card has
             string aside_query = "SELECT * FROM Traits INNER JOIN TraitCards ON Traits.TraitID = TraitCards.Trait_TraitID WHERE TraitCards.Card_CardID=@id";
             var fk_parameter = new SqlParameter("@id", id);
             List<Trait> traits = db.Traits.SqlQuery(aside_query, fk_parameter).ToList();
             viewModel.traits = traits;
+            */
 
             //read the view model data
             return View(viewModel);
@@ -165,25 +182,21 @@ namespace PassionProject.Controllers
 
             //Query statement to update the specific Card
             string query = "UPDATE cards";
-            query += " SET CardName = @CardName, CardColour = @CardColour, SeriesID = @SeriesID";
+            query += " SET CardName = @CardName, CardColour = @CardColour, SeriesID = @SeriesID, TraitID1 = @TraitID1, TraitID2 = @TraitID2";
             query += " WHERE CardID = @CardID";
 
-            SqlParameter[] sqlparams = new SqlParameter[4];
+            SqlParameter[] sqlparams = new SqlParameter[6];
             sqlparams[0] = new SqlParameter("@CardName", CardName);
             sqlparams[1] = new SqlParameter("@CardColour", CardColour);
             sqlparams[2] = new SqlParameter("@SeriesID", SeriesID);
-            sqlparams[3] = new SqlParameter("@CardID", id);
+            sqlparams[3] = new SqlParameter("@TraitID1", TraitID1);
+            sqlparams[4] = new SqlParameter("@TraitID2", TraitID2);
+            sqlparams[5] = new SqlParameter("@CardID", id);
 
             //Execute query command
             db.Database.ExecuteSqlCommand(query, sqlparams);
 
-            //Delete Add
-
-
-
-
-
-            //Go back to the list of Trait to see our changes
+            //Go back to the list of Card to see our changes
             return RedirectToAction("List");
         }
 

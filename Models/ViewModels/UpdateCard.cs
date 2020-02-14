@@ -11,7 +11,7 @@ namespace DeckBuilder.Models.ViewModels
         public virtual Card card { get; set; }
 
         //A list for every trait they have
-        public List<Trait> traits { get; set; }
+        //public List<Trait> traits { get; set; }
 
         //Used for the drop down list of the all the possible Series
         public List<Series> allSeries { get; set; }
