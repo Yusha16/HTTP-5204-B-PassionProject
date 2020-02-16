@@ -23,7 +23,7 @@ namespace DeckBuilder.Models
         [ForeignKey("SeriesID")]
         public virtual Series Series { get; set; }
 
-        //A Card can have up to two trait (One to Many Relationship) Change to FK
+        //A Card can have up to two trait (One to Many Relationship)
         public ICollection<Trait> Traits { get; set; }
 
         //A Card can be in any number of decks (Many to Many Relationship)

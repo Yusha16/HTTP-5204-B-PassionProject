@@ -105,19 +105,19 @@ namespace PassionProject.Controllers
 
             if (TraitID1 != -1) { 
                 //Add the trait to the Card
-                query = "INSERT INTO TraitCards (Trait_TraitID, Card_CardID) VALUES (@CardID, @TraitID)";
+                query = "INSERT INTO TraitCards (Trait_TraitID, Card_CardID) VALUES (@TraitID, @CardID)";
                 sqlparams = new SqlParameter[2];
-                sqlparams[0] = new SqlParameter("@CardID", id);
-                sqlparams[1] = new SqlParameter("@TraitID", TraitID1);
+                sqlparams[0] = new SqlParameter("@TraitID", TraitID1);
+                sqlparams[1] = new SqlParameter("@CardID", id);
                 db.Database.ExecuteSqlCommand(query, sqlparams);
             }
             if (TraitID2 != -1 && TraitID1 != TraitID2)
             {
                 //Add the trait to the Card
-                query = "INSERT INTO TraitCards (Trait_TraitID, Card_CardID) VALUES (@CardID, @TraitID)";
+                query = "INSERT INTO TraitCards (Trait_TraitID, Card_CardID) VALUES (@TraitID, @CardID)";
                 sqlparams = new SqlParameter[2];
-                sqlparams[0] = new SqlParameter("@CardID", id);
-                sqlparams[1] = new SqlParameter("@TraitID", TraitID2);
+                sqlparams[0] = new SqlParameter("@TraitID", TraitID2);
+                sqlparams[1] = new SqlParameter("@CardID", id);
                 db.Database.ExecuteSqlCommand(query, sqlparams);
             }
 
@@ -177,16 +177,55 @@ namespace PassionProject.Controllers
             //Execute query command
             db.Database.ExecuteSqlCommand(query, sqlparams);
 
-            //Delete Add
+            //Delete all the TraitCards related to this Card
+            query = "DELETE FROM TraitCards WHERE Card_CardID = @CardID";
+            SqlParameter sqlparam = new SqlParameter("@CardID", id);
+            
+            //Execute query command
+            db.Database.ExecuteSqlCommand(query, sqlparam);
 
-
-
-
+            //Add all the Trait to this Card
+            if (TraitID1 != -1)
+            {
+                //Add the trait to the Card
+                query = "INSERT INTO TraitCards (Trait_TraitID, Card_CardID) VALUES (@TraitID, @CardID)";
+                sqlparams = new SqlParameter[2];
+                sqlparams[0] = new SqlParameter("@TraitID", TraitID1);
+                sqlparams[1] = new SqlParameter("@CardID", id);
+                db.Database.ExecuteSqlCommand(query, sqlparams);
+            }
+            if (TraitID2 != -1 && TraitID1 != TraitID2)
+            {
+                //Add the trait to the Card
+                query = "INSERT INTO TraitCards (Trait_TraitID, Card_CardID) VALUES (@TraitID, @CardID)";
+                sqlparams = new SqlParameter[2];
+                sqlparams[0] = new SqlParameter("@TraitID", TraitID2);
+                sqlparams[1] = new SqlParameter("@CardID", id);
+                db.Database.ExecuteSqlCommand(query, sqlparams);
+            }
 
             //Go back to the list of Trait to see our changes
             return RedirectToAction("List");
         }
 
+        //When user clicks on the Delete button (hidden form submission)
+        [HttpPost]
+        public ActionResult Delete(int id)
+        {
+            //Debug Purpose to see if we are getting the id
+            Debug.WriteLine("I'm pulling data of " + id.ToString());
+
+            //Query statement to delete the specific Card
+            string query = "DELETE FROM cards WHERE CardID = @CardID";
+
+            SqlParameter sqlparam = new SqlParameter("@CardID", id);
+
+            //Execute query command
+            db.Database.ExecuteSqlCommand(query, sqlparam);
+
+            //Go back to List of Series
+            return RedirectToAction("List");
+        }
 
     }
 }

@@ -10,10 +10,10 @@
 <a href="/Card/Update/@Model.card.CardID">Update</a>
 <p>Name: @Model.card.CardName</p>
 <p>Colour: @Model.card.CardColour</p>
-<p>Series: <a value="@Model.card.SeriesID">@Model.card.Series.SeriesName</a></p>
+<p>Series: <a href="/Series/Show/@Model.card.SeriesID">@Model.card.Series.SeriesName</a></p>
 @{
     foreach (var trait in @Model.traits)
     {
-        <p>Trait: <a value="@trait.TraitID">@trait.TraitName</a></p>
+        <p>Trait: <a href="/Trait/Show/@trait.TraitID">@trait.TraitName</a></p>
     }
 }
