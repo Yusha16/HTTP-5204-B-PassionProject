@@ -128,6 +128,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\CardController.cs" />
+    <Compile Include="Controllers\DeckController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\SeriesController.cs" />
     <Compile Include="Controllers\TraitController.cs" />
@@ -153,8 +154,11 @@
     <Compile Include="Models\Series.cs" />
     <Compile Include="Models\Trait.cs" />
     <Compile Include="Models\ViewModels\AddCard.cs" />
+    <Compile Include="Models\ViewModels\HowMany.cs" />
     <Compile Include="Models\ViewModels\ShowCard.cs" />
+    <Compile Include="Models\ViewModels\ShowDeck.cs" />
     <Compile Include="Models\ViewModels\UpdateCard.cs" />
+    <Compile Include="Models\ViewModels\UpdateDeck.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -205,9 +209,15 @@
     <Content Include="Views\Card\Add.cshtml" />
     <Content Include="Views\Card\Show.cshtml" />
     <Content Include="Views\Card\Update.cshtml" />
+    <Content Include="Views\Deck\List.cshtml" />
+    <Content Include="Views\Deck\Show.cshtml" />
+    <Content Include="Views\Deck\Add.cshtml" />
+    <Content Include="Views\Deck\Update.cshtml" />
+    <Content Include="Views\Shared\HowMany.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\Cards\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

@@ -93,10 +93,10 @@ namespace DeckBuilder.Controllers
             SqlParameter sqlparam = new SqlParameter("@TraitID", id);
 
             //The query is returning a list, so we only want the first one
-            Trait selectedtrait = db.Traits.SqlQuery(query, sqlparam).FirstOrDefault();
+            Trait selectedTrait = db.Traits.SqlQuery(query, sqlparam).FirstOrDefault();
 
             //read the trait data
-            return View(selectedtrait);
+            return View(selectedTrait);
         }
 
         //When user submits the form to update the specific Trait

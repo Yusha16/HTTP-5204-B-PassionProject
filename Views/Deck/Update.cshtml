@@ -1,0 +1,13 @@
+﻿@model DeckBuilder.Models.Deck
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update @Model.DeckName</h2>
+<form method="POST" action="/Deck/Update/@Model.DeckID">
+    <div>
+        <span>Deck Name: </span><input type="text" name="DeckName" id="DeckName" value="@Model.DeckName" />
+    </div>
+    <input type="submit" value="Update Deck" />
+</form>

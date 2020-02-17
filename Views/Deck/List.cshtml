@@ -1,0 +1,31 @@
+﻿@model List<DeckBuilder.Models.Deck>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<h2>Deck List</h2>
+<a href="/Deck/Add">Add a new Deck</a>
+<table>
+    <thead>
+        <tr>
+            <th class="col-sm-1">Deck Name</th>
+            <th class="col-sm-1">Delete</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{
+            foreach (var deck in @Model)
+            {
+                <tr>
+                    <td class="col-sm-1"><a href="/Deck/Show/@deck.DeckID">@deck.DeckName</a></td>
+                    <td class="col-sm-1">
+                        <form method="POST" action="/Deck/Delete/@deck.DeckID">
+                            <input id="submit" type="submit" value="Delete" />
+                        </form>
+                    </td>
+                </tr>
+            }
+        }
+    </tbody>
+</table>

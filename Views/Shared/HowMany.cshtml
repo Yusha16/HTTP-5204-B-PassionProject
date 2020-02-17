@@ -1,0 +1,19 @@
+﻿@model DeckBuilder.Models.ViewModels.HowMany
+
+@{
+    if (Model.UpdateMethod == "AddCard")
+    {
+        <form method="GET" action="/Deck/AddCard/@Model.DeckID?CardID=@Model.CardID">
+
+            <input id="submit" type="submit" value="Ok" />
+        </form>
+    }
+    else
+    {
+
+    }
+}
+
+
+
+

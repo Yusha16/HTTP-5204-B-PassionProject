@@ -13,7 +13,7 @@ using DeckBuilder.Models;
 using DeckBuilder.Models.ViewModels;
 using System.Diagnostics;
 
-namespace PassionProject.Controllers
+namespace DeckBuilder.Controllers
 {
     public class CardController : Controller
     {
@@ -54,7 +54,7 @@ namespace PassionProject.Controllers
             var fk_parameter = new SqlParameter("@id", id);
             List<Trait> traits = db.Traits.SqlQuery(aside_query, fk_parameter).ToList();
 
-            //ViewModel for the AddCard
+            //ViewModel for the ShowCard
             ShowCard viewmodel = new ShowCard();
             viewmodel.card = selectedCard;
             viewmodel.traits = traits;
