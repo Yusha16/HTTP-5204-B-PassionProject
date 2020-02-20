@@ -22,3 +22,12 @@ select,
 textarea {
     max-width: 280px;
 }
+
+.scrollbar {
+    height: 500px;
+    overflow-y: scroll;
+}
+
+.cardWrapper {
+    height: 300px
+}

@@ -5,14 +5,22 @@
 }
 
 <h2>Add a new Card</h2>
-<form method="POST" action="/Card/Add">
+<form method="POST" action="/Card/Add" enctype="multipart/form-data">
+    <div>
+        <span>Image: </span><input type="file" name="CardPic" id="CardPic" />
+    </div>
     <div>
         <label name="CardName">Card Name: </label>
         <input type="text" name="CardName" id="CardName" />
     </div>
     <div>
         <label name="CardColour">Card Colour: </label>
-        <input type="text" name="CardColour" id="CardColour" />
+        <select id="CardColour" type="text" name="CardColour">
+            <option value="Yellow">Yellow</option>
+            <option value="Green">Green</option>
+            <option value="Red">Red</option>
+            <option value="Blue">Blue</option>
+        </select>
     </div>
     <div>
         <label name="SeriesID">Series: </label>

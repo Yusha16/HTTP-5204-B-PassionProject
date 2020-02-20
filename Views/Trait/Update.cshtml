@@ -6,6 +6,8 @@
 
 <h2>Update @Model.TraitName</h2>
 <form method="POST" action="/Trait/Update/@Model.TraitID">
-    <span>Trait Name</span><input type="text" name="TraitName" id="TraitName" value="@Model.TraitName" />
+    <div>
+        <span>Trait Name</span><input type="text" name="TraitName" id="TraitName" value="@Model.TraitName" />
+    </div>
     <input type="submit" value="Update Trait" />
 </form>

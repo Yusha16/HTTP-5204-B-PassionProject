@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
+    @Styles.Render("~/Content/Site.css")
     @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
@@ -15,14 +16,18 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+                @Html.ActionLink("Deck Builder", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                    <li>@Html.ActionLink("About", "About", "Home")</li>
-                    <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
+                    <li>@Html.ActionLink("Decks", "List", "Deck")</li>
+                    <li>@Html.ActionLink("Cards", "List", "Card")</li>
+                    <li>@Html.ActionLink("Traits", "List", "Trait")</li>
+                    <li>@Html.ActionLink("Series", "List", "Series")</li>
                 </ul>
             </div>
         </div>
@@ -31,6 +36,7 @@
         @RenderBody()
         <hr />
         <footer>
+            <p>By: Christopher Maeda</p>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
         </footer>
     </div>

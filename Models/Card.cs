@@ -18,6 +18,12 @@ namespace DeckBuilder.Models
         //A Card has a colour (Yellow, Green, Red, Blue)
         public string CardColour { get; set; }
 
+        //PicID can be 0 or 1+ indicating (1+) => has picture (0)=> no picture
+        //Content/Cards/{PicID}.{PicExtension}
+        public int PicID { get; set; }
+        //.jpg, .gif. .png, .jpeg
+        public string PicExtension { get; set; }
+
         //A Card can have only one series (One to Many Relationship)
         public int SeriesID { get; set; }
         [ForeignKey("SeriesID")]

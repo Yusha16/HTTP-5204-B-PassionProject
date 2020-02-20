@@ -12,6 +12,7 @@ using DeckBuilder.Data;
 using DeckBuilder.Models;
 using DeckBuilder.Models.ViewModels;
 using System.Diagnostics;
+using System.IO;
 
 namespace DeckBuilder.Controllers
 {
@@ -26,9 +27,25 @@ namespace DeckBuilder.Controllers
         private DeckBuilderContext db = new DeckBuilderContext();
 
         // GET: Card
-        public ActionResult List()
+        public ActionResult List(string cardNameFilter = "")
         {
-            List<Card> cards = db.Cards.SqlQuery("SELECT * FROM Cards").ToList();
+            //Debug Purpose to see if we are filtering
+            Debug.WriteLine("I'm filtering " + cardNameFilter);
+
+            string query = "SELECT * FROM Cards";
+            List<Card> cards;
+            if (cardNameFilter != "")
+            {
+                //query = query + " where CardName like '%" + cardNameFilter + "%'";
+                query += " WHERE CardName LIKE  '%'+@CardName+'%'";
+                SqlParameter sqlparam = new SqlParameter("@CardName", cardNameFilter);
+                Debug.WriteLine("The query is " + query);
+                cards = db.Cards.SqlQuery(query, sqlparam).ToList();
+            }
+            else {
+                Debug.WriteLine("The query is " + query);
+                cards = db.Cards.SqlQuery(query).ToList();
+            }
             return View(cards);
         }
 
@@ -84,17 +101,58 @@ namespace DeckBuilder.Controllers
 
         //When user submits the form to add a new Card
         [HttpPost]
-        public ActionResult Add(string CardName, string CardColour, int SeriesID, int TraitID1 = -1, int TraitID2 = -1)
+        public ActionResult Add(string CardName, string CardColour, int SeriesID, int TraitID1, int TraitID2, HttpPostedFileBase CardPic)
         {
             //Debug Purpose to see if we are getting the data
-            Debug.WriteLine("I'm pulling data of " + CardName + ", " + CardColour + ", " + SeriesID + ", " + TraitID1  + ", and " + TraitID2);
+            Debug.WriteLine("I'm pulling data of " + CardName + ", " + CardColour + ", " + SeriesID + ", " + TraitID1  + ", " + TraitID2 + ",  and " + CardPic);
 
-            //The query to add a new Trait
-            string query = "INSERT INTO cards (CardName, CardColour, SeriesID) VALUES (@CardName, @CardColour, @SeriesID)";
-            SqlParameter[] sqlparams = new SqlParameter[3];
+            //Default image
+            int CardPicID = 0;
+            string CardPicExtension = "png";
+
+            //checking to see if some information is there
+            if (CardPic != null)
+            {
+                Debug.WriteLine("Something identified...");
+                //checking to see if the file size is greater than 0 (bytes)
+                if (CardPic.ContentLength > 0)
+                {
+                    Debug.WriteLine("Successfully Identified Image");
+                    //file extensioncheck taken from https://www.c-sharpcorner.com/article/file-upload-extension-validation-in-asp-net-mvc-and-javascript/
+                    string[] valtypes = new[] { "jpeg", "jpg", "png", "gif" };
+                    string extension = Path.GetExtension(CardPic.FileName).Substring(1);
+
+                    if (valtypes.Contains(extension))
+                    {
+                        try
+                        {
+                            //get a direct file path to ~/Content/Cards/{CardPic.FileName}
+                            string path = Path.Combine(Server.MapPath("~/Content/Cards/"), CardPic.FileName);
+
+                            //save the file
+                            CardPic.SaveAs(path);
+
+                            //if these are all successful then we can set these fields
+                            CardPicID = int.Parse(Path.GetFileNameWithoutExtension(CardPic.FileName));
+                            CardPicExtension = extension;
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Card Image was not saved successfully.");
+                            Debug.WriteLine("Exception:" + ex);
+                        }
+                    }
+                }
+            }
+
+            //The query to add a new Card
+            string query = "INSERT INTO cards (CardName, CardColour, SeriesID, PicID, PicExtension) VALUES (@CardName, @CardColour, @SeriesID, @CardPicID, @CardPicExtension)";
+            SqlParameter[] sqlparams = new SqlParameter[5];
             sqlparams[0] = new SqlParameter("@CardName", CardName);
             sqlparams[1] = new SqlParameter("@CardColour", CardColour);
             sqlparams[2] = new SqlParameter("@SeriesID", SeriesID);
+            sqlparams[3] = new SqlParameter("@CardPicID", CardPicID);
+            sqlparams[4] = new SqlParameter("@CardPicExtension", CardPicExtension);
 
             //Run the sql command
             db.Database.ExecuteSqlCommand(query, sqlparams);
@@ -158,21 +216,62 @@ namespace DeckBuilder.Controllers
 
         //When user submits the form to update the specific Card
         [HttpPost]
-        public ActionResult Update(int id, string CardName, string CardColour, int SeriesID, int TraitID1 = -1, int TraitID2 = -1)
+        public ActionResult Update(int id, string CardName, string CardColour, int SeriesID, int TraitID1, int TraitID2, HttpPostedFileBase CardPic)
         {
             //Debug Purpose to see if we are getting the data
-            Debug.WriteLine("I'm pulling data of " + CardName + ", " + CardColour + ", " + SeriesID + ", " + TraitID1 + ", and " + TraitID2);
+            Debug.WriteLine("I'm pulling data of " + CardName + ", " + CardColour + ", " + SeriesID + ", " + TraitID1 + ", " + TraitID2 + ", and " + CardPic);
+
+            //Default image
+            int CardPicID = 0;
+            string CardPicExtension = "png";
+
+            //checking to see if some information is there
+            if (CardPic != null)
+            {
+                Debug.WriteLine("Something identified...");
+                //checking to see if the file size is greater than 0 (bytes)
+                if (CardPic.ContentLength > 0)
+                {
+                    Debug.WriteLine("Successfully Identified Image");
+                    //file extensioncheck taken from https://www.c-sharpcorner.com/article/file-upload-extension-validation-in-asp-net-mvc-and-javascript/
+                    string[] valtypes = new[] { "jpeg", "jpg", "png", "gif" };
+                    string extension = Path.GetExtension(CardPic.FileName).Substring(1);
+
+                    if (valtypes.Contains(extension))
+                    {
+                        try
+                        {
+                            //get a direct file path to ~/Content/Cards/{CardPic.FileName}
+                            string path = Path.Combine(Server.MapPath("~/Content/Cards/"), CardPic.FileName);
+
+                            //save the file
+                            CardPic.SaveAs(path);
+                            
+                            //if these are all successful then we can set these fields
+                            CardPicID = int.Parse(Path.GetFileNameWithoutExtension(CardPic.FileName));
+                            CardPicExtension = extension;
+                        }
+                        catch (Exception ex)
+                        {
+                            Debug.WriteLine("Card Image was not saved successfully.");
+                            Debug.WriteLine("Exception:" + ex);
+                        }
+                    }
+                }
+            }
 
             //Query statement to update the specific Card
             string query = "UPDATE cards";
-            query += " SET CardName = @CardName, CardColour = @CardColour, SeriesID = @SeriesID";
+            query += " SET CardName = @CardName, CardColour = @CardColour, SeriesID = @SeriesID, PicID = @CardPicID, PicExtension = @CardPicExtension";
             query += " WHERE CardID = @CardID";
 
-            SqlParameter[] sqlparams = new SqlParameter[4];
+            SqlParameter[] sqlparams = new SqlParameter[6];
             sqlparams[0] = new SqlParameter("@CardName", CardName);
             sqlparams[1] = new SqlParameter("@CardColour", CardColour);
             sqlparams[2] = new SqlParameter("@SeriesID", SeriesID);
-            sqlparams[3] = new SqlParameter("@CardID", id);
+            sqlparams[3] = new SqlParameter("@CardPicID", CardPicID);
+            sqlparams[4] = new SqlParameter("@CardPicExtension", CardPicExtension);
+            sqlparams[5] = new SqlParameter("@CardID", id);
 
             //Execute query command
             db.Database.ExecuteSqlCommand(query, sqlparams);

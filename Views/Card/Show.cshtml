@@ -8,6 +8,9 @@
 
 <a href="/Card/List">Back to List</a>
 <a href="/Card/Update/@Model.card.CardID">Update</a>
+<div>
+    <img src="../../Content/Cards/@(Model.card.PicID).@(Model.card.PicExtension)" alt="Image of @Model.card.CardName" />
+</div>
 <p>Name: @Model.card.CardName</p>
 <p>Colour: @Model.card.CardColour</p>
 <p>Series: <a href="/Series/Show/@Model.card.SeriesID">@Model.card.Series.SeriesName</a></p>

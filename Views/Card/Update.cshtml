@@ -5,15 +5,48 @@
 }
 
 <h2>Update @Model.card.CardName</h2>
-<form method="POST" action="/Card/Update/@Model.card.CardID">
+<form method="POST" action="/Card/Update/@Model.card.CardID" enctype="multipart/form-data">
     <div>
-        <span>Card Name: </span><input type="text" name="CardName" id="CardName" value="@Model.card.CardName" />
+        <span>Image: </span><input type="file" name="CardPic" id="CardPic" />
     </div>
     <div>
-        <span>Card Colour: </span><input type="text" name="CardColour" id="CardColour" value="@Model.card.CardColour" />
+        <label name="CardName">Card Name: </label>
+        <input type="text" name="CardName" id="CardName" value="@Model.card.CardName" />
+
     </div>
     <div>
-        <span>Series: </span>
+        <label name="CardColour">Card Colour: </label>
+        <select id="CardColour" type="text" name="CardColour">
+            @{
+                if (@Model.card.CardColour == "Yellow") {
+                    <option value="Yellow" selected>Yellow</option>
+                }
+                else {
+                    <option value="Yellow">Yellow</option>
+                }
+                if (@Model.card.CardColour == "Green") { 
+                    <option value="Green" selected>Green</option>
+                }
+                else {
+                    <option value="Green">Green</option>
+                }
+                if (@Model.card.CardColour == "Red") {
+                    <option value="Red" selected>Red</option>
+                }
+                else {
+                    <option value="Red">Red</option>
+                }
+                if (@Model.card.CardColour == "Blue") {
+                    <option value="Blue" selected>Blue</option>
+                }
+                else {
+                    <option value="Blue">Blue</option>
+                }
+            }
+        </select>
+    </div>
+    <div>
+        <label name="SeriesID">Series: </label>
         <select id="SeriesID" type="text" name="SeriesID">
             @{
                 //A rendering loop for presenting a list of series
@@ -34,9 +67,10 @@
         </select>
     </div>
     <div>
-        <span>Trait: </span>
+        <label name="TraitID1">Trait: </label>
         <select id="TraitID1" type="text" name="TraitID1">
             @{
+                <option value="-1">Not Selected</option>
                 //A rendering loop for presenting a list of traits
                 foreach (var trait in @Model.allTraits)
                 {
@@ -53,9 +87,10 @@
         </select>
     </div>
     <div>
-        <span>Trait: </span>
+        <label name="TraitID2">Trait: </label>
         <select id="TraitID2" type="text" name="TraitID2">
             @{
+                <option value="-1">Not Selected</option>
                 //A rendering loop for presenting a list of traits
                 foreach (var trait in @Model.allTraits)
                 {

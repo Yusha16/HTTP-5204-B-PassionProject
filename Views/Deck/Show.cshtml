@@ -4,34 +4,53 @@
     ViewBag.Title = "Show";
 }
 
-<h2>Show Trait Detail</h2>
+<h2>Show Deck Detail</h2>
 
 <a href="/Deck/List">Back to List</a>
 <a href="/Deck/Update/@Model.deck.DeckID">Update</a>
 <p>Name: @Model.deck.DeckName</p>
-<div>
+<div class="col-lg-8 table-bordered scrollbar">
     <h3>Your Deck List</h3>
     @{
         for (int i = 0; i < @Model.cards.Count; i++)
         {
-            <p>Card Name: <a href="/Card/Show/@Model.cards[i].CardID">@Model.cards[i].CardName</a> Quantity: @Model.cardQuantity[i]</p>
-            <form method="POST" action="/Deck/RemoveCard/@Model.deck.DeckID?CardID=@Model.cards[i].CardID">
-                <input id="submit" type="submit" value="Remove Card" />
-            </form>
+            <div class="col-sm-3">
+                <div align="center">
+                    <img src="../../Content/Cards/@(Model.cards[i].PicID).@(Model.cards[i].PicExtension)" alt="Image of @Model.cards[i].CardName" />
+                </div>
+                <div align="center">
+                    <a href="/Card/Show/@Model.cards[i].CardID">@Model.cards[i].CardName</a>
+                </div>
+                <div align="center">
+                    <p>Quantity: @Model.cardQuantity[i]</p>
+                </div>
+                <div align="center">
+                    <form method="POST" action="/Deck/RemoveCard/@Model.deck.DeckID?CardID=@Model.cards[i].CardID">
+                        <input id="submit" type="submit" value="Remove Card" />
+                    </form>
+                </div>
+            </div>
         }
     }
 </div>
-<div>
+<div class="col-lg-4 table-bordered scrollbar">
     <h3>All Card List</h3>
     @{
         foreach (var card in @Model.allCards)
         {
-            <p>
-                Card Name: <a href="/Card/Show/@card.CardID">@card.CardName</a>
-            </p>
-            <form method="POST" action="/Deck/AddCard/@Model.deck.DeckID?CardID=@card.CardID">
-                <input id="submit" type="submit" value="Add to Deck" />
-            </form>
+            <div class="col-lg-6 cardWrapper">
+                <div align="center">
+                    <img src="../../Content/Cards/@(card.PicID).@(card.PicExtension)" alt="Image of @card.CardName" />
+                </div>
+                <div align="center">
+                    <a href="/Card/Show/@card.CardID">@card.CardName</a>
+                </div>
+                <div align="center">
+                    <form method="POST" action="/Deck/AddCard/@Model.deck.DeckID?CardID=@card.CardID">
+                        <input id="submit" type="submit" value="Add to Deck" />
+                    </form>
+                </div>
+            </div>
         }
     }
 </div>

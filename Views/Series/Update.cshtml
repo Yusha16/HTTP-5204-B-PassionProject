@@ -6,7 +6,13 @@
 
 <h2>Update @Model.SeriesName</h2>
 <form method="POST" action="/Series/Update/@Model.SeriesID">
-    <span>Series Name</span><input type="text" name="SeriesName" id="SeriesName" value="@Model.SeriesName" />
-    <span>Series Code</span><input type="text" name="SeriesCode" id="SeriesCode" value="@Model.SeriesCode" />
+    <div>
+        <label name="SeriesName">Series Name: </label>
+        <input type="text" name="SeriesName" id="SeriesName" value="@Model.SeriesName" />
+    </div>
+    <div>
+        <label name="SeriesCode">Series Code: </label>
+        <input type="text" name="SeriesCode" id="SeriesCode" value="@Model.SeriesCode" />
+    </div>
     <input type="submit" value="Update Series" />
 </form>

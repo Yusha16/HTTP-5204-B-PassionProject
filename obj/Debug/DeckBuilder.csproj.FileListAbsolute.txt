@@ -82,3 +82,4 @@ C:\Users\chris\Desktop\Mobile_Development_Projects\N00768018-Deck_Build\DeckBuil
 C:\Users\chris\Desktop\Mobile_Development_Projects\N00768018-Deck_Build\DeckBuilder\obj\Debug\DeckBuilder.csproj.GenerateResource.cache
 C:\Users\chris\Desktop\Mobile_Development_Projects\N00768018-Deck_Build\DeckBuilder\obj\Debug\DeckBuilder.Migrations.initial1.resources
 C:\Users\chris\Desktop\Mobile_Development_Projects\N00768018-Deck_Build\DeckBuilder\obj\Debug\DeckBuilder.Migrations.TraitsUpdate.resources
+C:\Users\chris\Desktop\Mobile_Development_Projects\N00768018-Deck_Build\DeckBuilder\obj\Debug\DeckBuilder.Migrations.AddCardImage.resources

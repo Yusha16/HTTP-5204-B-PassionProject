@@ -148,6 +148,10 @@
     <Compile Include="Migrations\202002130101236_Traits Update.designer.cs">
       <DependentUpon>202002130101236_Traits Update.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202002170334332_Add-Card-Image.cs" />
+    <Compile Include="Migrations\202002170334332_Add-Card-Image.designer.cs">
+      <DependentUpon>202002170334332_Add-Card-Image.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\Card.cs" />
     <Compile Include="Models\Deck.cs" />
@@ -166,6 +170,11 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\Cards\0.png" />
+    <Content Include="Content\Cards\1.png" />
+    <Content Include="Content\Cards\2.png" />
+    <Content Include="Content\Cards\3.png" />
+    <Content Include="Content\Cards\4.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -217,7 +226,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Content\Cards\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />
@@ -241,6 +249,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202002130101236_Traits Update.resx">
       <DependentUpon>202002130101236_Traits Update.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002170334332_Add-Card-Image.resx">
+      <DependentUpon>202002170334332_Add-Card-Image.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

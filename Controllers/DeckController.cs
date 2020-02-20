@@ -49,13 +49,15 @@ namespace DeckBuilder.Controllers
             //Get the Specific Deck
             Deck selectedDeck = db.Decks.SqlQuery(query, sqlparam).FirstOrDefault();
 
-            //Get the all the cards that the deck has
-            string aside_query = "SELECT * FROM Cards INNER JOIN DeckCards ON Cards.CardID = DeckCards.Card_CardID WHERE DeckCards.Deck_DeckID=@id";
+            //Get all the cards that the deck has
+            string aside_query = "SELECT * FROM Cards INNER JOIN DeckCards ON Cards.CardID = DeckCards.Card_CardID WHERE DeckCards.Deck_DeckID=@id ORDER BY Quantity DESC";
             var fk_parameter = new SqlParameter("@id", id);
             List<Card> cards = db.Cards.SqlQuery(aside_query, fk_parameter).ToList();
 
             //Get the Quantity Amount
-            List<int> quantities = db.Database.SqlQuery<int>("SELECT quantity FROM deckcards").ToList();
+            aside_query = "SELECT quantity FROM Cards INNER JOIN DeckCards ON Cards.CardID = DeckCards.Card_CardID WHERE DeckCards.Deck_DeckID=@id ORDER BY Quantity DESC";
+            fk_parameter = new SqlParameter("@id", id);
+            List<int> quantities = db.Database.SqlQuery<int>(aside_query, fk_parameter).ToList();
 
             //Get all cards
             List<Card> allCards = db.Cards.SqlQuery("SELECT * FROM Cards").ToList();

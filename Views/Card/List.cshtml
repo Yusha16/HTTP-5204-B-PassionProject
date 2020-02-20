@@ -5,31 +5,38 @@
 }
 
 <h2>Card List</h2>
-<a href="/Card/Add">Add a new Card</a>
-<table>
-    <thead>
-        <tr>
-            <th class="col-sm-1">Card Name</th>
-            <th class="col-sm-1">Card Colour</th>
-            <th class="col-sm-1">Series Name</th>
-            <th class="col-sm-1">Delete</th>
-        </tr>
-    </thead>
-    <tbody>
-        @{
-            foreach (var card in @Model)
-            {
-                <tr>
-                    <td class="col-sm-1"><a href="/Card/Show/@card.CardID">@card.CardName</a></td>
-                    <td class="col-sm-1">@card.CardColour</td>
-                    <td class="col-sm-1"><a href="/Series/Show/@card.SeriesID">@card.Series.SeriesName</a></td>
-                    <td class="col-sm-1">
-                        <form method="POST" action="/Card/Delete/@card.CardID">
-                            <input id="submit" type="submit" value="Delete" />
-                        </form>
-                    </td>
-                </tr>
-            }
+<div class="row">
+    <a href="/Card/Add">Add a new Card</a>
+</div>
+<div>
+    <h3>Filter: </h3>
+    <form action="/Card/List" method="GET">
+        <label name="cardNameFilter">Card Name: </label>
+        <input type="text" name="cardNameFilter" id="cardNameFilter" />        
+        <input type="submit" value="Filter" />
+    </form>
+</div>
+<div class="scrollbar">
+    @{
+        foreach (var card in @Model)
+        {
+            <div class="col-sm-3">
+                <div align="center">
+                    <img src="../../Content/Cards/@(card.PicID).@(card.PicExtension)" alt="Image of @card.CardName" />
+                </div>
+                <div align="center">
+                    <a href="/Card/Show/@card.CardID">@card.CardName</a>
+                </div>
+                <div align="center">
+                    Series: <a href="/Series/Show/@card.SeriesID">@card.Series.SeriesName</a>
+                </div>
+                <div align="center">
+                    <form method="POST" action="/Card/Delete/@card.CardID">
+                        <input id="submit" type="submit" value="Delete" />
+                    </form>
+                </div>
+            </div>
         }
-    </tbody>
-</table>
+    }
+</div>
+<div class="row"></div>
