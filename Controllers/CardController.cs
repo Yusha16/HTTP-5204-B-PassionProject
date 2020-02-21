@@ -29,11 +29,13 @@ namespace DeckBuilder.Controllers
         // GET: Card
         public ActionResult List(string cardNameFilter = "")
         {
-            //Debug Purpose to see if we are filtering
+            //Debug Purpose to see what we are filtering
             Debug.WriteLine("I'm filtering " + cardNameFilter);
 
             string query = "SELECT * FROM Cards";
             List<Card> cards;
+
+            //Do we filter the list of cards
             if (cardNameFilter != "")
             {
                 //query = query + " where CardName like '%" + cardNameFilter + "%'";

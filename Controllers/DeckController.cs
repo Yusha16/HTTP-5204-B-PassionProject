@@ -238,7 +238,7 @@ namespace DeckBuilder.Controllers
             //The query is returning a list, so we only want the first one
             Deck selectedDeck = db.Decks.SqlQuery(query, sqlparam).FirstOrDefault();
 
-            //read the trait data
+            //read the deck data
             return View(selectedDeck);
         }
 
